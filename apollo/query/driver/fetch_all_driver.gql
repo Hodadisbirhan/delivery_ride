@@ -1,0 +1,21 @@
+query fetch_driver($where: users_bool_exp!, $limit: Int, $offset: Int) {
+  drivers:users(limit: $limit, offset: $offset, where: $where) {
+    id
+    first_name
+    last_name
+    email
+    phone_number
+    driver {
+      car_name
+      license
+      platelate_number
+    
+    }
+  }
+
+  total_drivers: users_aggregate(where: $where) {
+    total: aggregate {
+      number: count
+    }
+  }
+}
